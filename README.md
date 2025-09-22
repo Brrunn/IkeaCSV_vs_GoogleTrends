@@ -12,7 +12,7 @@ Le projet inclut :
 
 Le tout est entièrement dockerisé.
 
-![Visualisation Grafana des données de la solution](docs/images/grafana.png)
+![Visualisation Grafana des données de la solution](docs/images/Grafana.png)
 
 # Architecture du projet
 
@@ -66,7 +66,7 @@ learning-airflow/
    - `index_to_elasticsearch.py` : envoie les données combinées dans Elasticsearch.  
    - Les dashboards Grafana permettent de visualiser l’évolution des tendances et les corrélations avec les produits Ikea.
 
-![Pipeline IKEA Trends](docs/images/airflow.png)
+![Pipeline IKEA Trends](docs/images/Airflow.png)
 
 ---
 
