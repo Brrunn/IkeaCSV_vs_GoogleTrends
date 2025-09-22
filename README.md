@@ -1,8 +1,16 @@
-# Overview
+# Description
 
-Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
+Ce projet met en place un pipeline de traitement et d’analyse de données automatisé avec Apache Airflow, PySpark, Elasticsearch et Grafana.
+L’objectif est de combiner les données Ikea (produits et descriptions) avec les données Google Trends, afin d’obtenir des insights exploitables pour le SEO et le suivi des tendances.
 
-Astronomer is the best place to host Apache Airflow -- try it out with a free trial at [astronomer.io](https://www.astronomer.io/).
+Le projet inclut :
+1. L’ingestion et le nettoyage des données IKEA et Google Trends
+2. Le formatage en Parquet pour un traitement performant avec Spark
+3. L’analyse et la combinaison des données pour générer un dataset final enrichi
+4. L’indexation des données dans Elasticsearch
+5. La visualisation des résultats avec Grafana
+
+Le tout est entièrement dockerisé.
 
 # Project Contents
 
