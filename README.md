@@ -27,7 +27,8 @@ learning-airflow/
     - processed/
     - raw/
 - scripts/
-  - analyse_trends_vs_ikea.py
+- combination/
+    - analyse_trends_vs_ikea.py
   - formatting/
     - format_google_trends.py
     - format_ikea_csv.py
