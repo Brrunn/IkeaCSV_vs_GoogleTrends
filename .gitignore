@@ -11,3 +11,4 @@ include/data/combined/*.parquet
 venv/
 __pycache__/
 .DS_Store
+include/data/duckdb/
