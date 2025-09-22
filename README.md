@@ -12,18 +12,35 @@ Le projet inclut :
 
 Le tout est entièrement dockerisé.
 
-# Project Contents
+# Architecture du projet
 
-Your Astro project contains the following files and folders:
+learning-airflow/
+├─ astro/                # Images et configuration Astro
+├─ airflow/              # Configuration Airflow
+├─ apps/                 # Applications supplémentaires
+├─ dags/
+│  └─ dags.py            # DAG Airflow principal
+├─ include/
+│  └─ data/
+│     ├─ combined/
+│     ├─ formatted/
+│     ├─ processed/
+│     └─ raw/
+├─ scripts/
+│  ├─ analyse_trends_vs_ikea.py
+│  ├─ formatting/
+│  │  ├─ format_google_trends.py
+│  │  └─ format_ikea_csv.py
+│  ├─ indexing/
+│  │  └─ index_to_elasticsearch.py
+│  └─ ingestion/
+│     ├─ fetch_google_trends_api.py
+│     ├─ fetch_ikea.py
+│     ├─ make_SEO_friendly.py
+│     └─ test_google_trends_api.py
+├─ Dockerfile
+└─ docker-compose.override.yml
 
-- dags: This folder contains the Python files for your Airflow DAGs. By default, this directory includes one example DAG:
-  - `example_astronauts`: This DAG shows a simple ETL pipeline example that queries the list of astronauts currently in space from the Open Notify API and prints a statement for each astronaut. The DAG uses the TaskFlow API to define tasks in Python, and dynamic task mapping to dynamically print a statement for each astronaut. For more on how this DAG works, see our [Getting started tutorial](https://docs.astronomer.io/learn/get-started-with-airflow).
-- Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
-- include: This folder contains any additional files that you want to include as part of your project. It is empty by default.
-- packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
-- requirements.txt: Install Python packages needed for your project by adding them to this file. It is empty by default.
-- plugins: Add custom or community plugins for your project to this file. It is empty by default.
-- airflow_settings.yaml: Use this local-only file to specify Airflow Connections, Variables, and Pools instead of entering them in the Airflow UI as you develop DAGs in this project.
 
 # Deploy Your Project Locally
 
@@ -44,10 +61,46 @@ Note: Running 'astro dev start' will start your project with the Airflow Webserv
 
 You should also be able to access your Postgres Database at 'localhost:5432/postgres'.
 
-# Deploy Your Project to Astronomer
+## Fonctionnement du pipeline
 
-If you have an Astronomer account, pushing code to a Deployment on Astronomer is simple. For deploying instructions, refer to Astronomer documentation: https://docs.astronomer.io/cloud/deploy-code/
+1. Enrichissement des mots-clés Ikea 
+   Le script `make_SEO_friendly.py` enrichit les produits Ikea avec des mots-clés SEO pertinents via l’API Google Gemini.
 
-# Contact
+2. Ingestion des données
+   - `fetch_ikea.py` : collecte et filtre les données Ikea.  
+   - `fetch_google_trends_api.py` : récupère les tendances Google pour les mots-clés enrichis.  
+   - `test_google_trends_api.py` : vérifie la connexion à Google Trends.
 
-The Astronomer CLI is maintained with love by the Astronomer team. To report a bug or suggest a change, reach out to our support.
+3. Formatage des données
+   - `format_ikea_csv.py` : conversion du CSV Ikea en Parquet.  
+   - `format_google_trends.py` : transformation du JSON Google Trends en Parquet.
+
+4. Analyse et combinaison
+   - `analyse_trends_vs_ikea.py` : combine les datasets Ikea et Google Trends avec PySpark pour obtenir un dataset final filtré.
+
+5. Indexation et visualisation
+   - `index_to_elasticsearch.py` : envoie les données combinées dans Elasticsearch.  
+   - Les dashboards Grafana permettent de visualiser l’évolution des tendances et les corrélations avec les produits Ikea.
+
+---
+
+## Démarrage du projet avec Astro
+
+Le projet utilise Astro (Astronomer) pour gérer Airflow et ses dépendances.  
+
+### Prérequis
+- [Astro CLI](https://www.astronomer.io/docs/astro/cli-installation) installé
+- Docker et Docker Compose installés
+
+### Démarrage en local
+
+astro dev init
+astro dev start
+
+Airflow : http://localhost:8080  # Utile pour éxecuter les dags depuis l'interface d'airflow
+
+Elasticsearch : http://localhost:9200
+
+Grafana : http://localhost:3000 (admin/admin)
+
+Kibana : http://localhost:5601
