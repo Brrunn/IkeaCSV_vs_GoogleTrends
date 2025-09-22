@@ -15,42 +15,30 @@ Le tout est entièrement dockerisé.
 # Architecture du projet
 
 learning-airflow/
-
-├─ astro/  
-│   Images et configuration Astro
-
-├─ airflow/  
-│   Configuration Airflow
-
-├─ apps/  
-│   Applications supplémentaires
-
-├─ dags/  
-│   └─ dags.py  
-│       DAG Airflow principal
-
-├─ include/  
-│   └─ data/  
-│       ├─ combined/  
-│       ├─ formatted/  
-│       ├─ processed/  
-│       └─ raw/
-
-├─ scripts/  
-│   ├─ analyse_trends_vs_ikea.py  
-│   ├─ formatting/  
-│   │   ├─ format_google_trends.py  
-│   │   └─ format_ikea_csv.py  
-│   ├─ indexing/  
-│   │   └─ index_to_elasticsearch.py  
-│   └─ ingestion/  
-│       ├─ fetch_google_trends_api.py  
-│       ├─ fetch_ikea.py  
-│       ├─ make_SEO_friendly.py  
-│       └─ test_google_trends_api.py
-
-├─ Dockerfile  
-
+├─ astro/ # Images et configuration Astro
+├─ airflow/ # Configuration Airflow
+├─ apps/ # Applications supplémentaires
+├─ dags/
+│ └─ dags.py # DAG Airflow principal
+├─ include/
+│ └─ data/
+│ ├─ combined/
+│ ├─ formatted/
+│ ├─ processed/
+│ └─ raw/
+├─ scripts/
+│ ├─ analyse_trends_vs_ikea.py
+│ ├─ formatting/
+│ │ ├─ format_google_trends.py
+│ │ └─ format_ikea_csv.py
+│ ├─ indexing/
+│ │ └─ index_to_elasticsearch.py
+│ └─ ingestion/
+│ ├─ fetch_google_trends_api.py
+│ ├─ fetch_ikea.py
+│ ├─ make_SEO_friendly.py
+│ └─ test_google_trends_api.py
+├─ Dockerfile
 └─ docker-compose.override.yml
 
 
