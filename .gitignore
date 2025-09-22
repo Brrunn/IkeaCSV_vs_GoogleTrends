@@ -5,4 +5,9 @@ __pycache__/
 include/data/combined/
 include/data/formatted/
 include/data/raw/
-
+logs/
+*.log
+include/data/combined/*.parquet
+venv/
+__pycache__/
+.DS_Store
