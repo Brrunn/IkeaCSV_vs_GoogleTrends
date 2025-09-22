@@ -76,13 +76,15 @@ Le projet utilise Astro (Astronomer) pour gérer Airflow et ses dépendances.
 
 ### Démarrage en local
 
-astro dev init
-astro dev start
+astro dev init </br>
+astro dev start </br>
 
-Airflow : http://localhost:8080  # Utile pour éxecuter les dags depuis l'interface d'airflow
+- Airflow : http://localhost:8080  # Utile pour éxecuter les dags depuis l'interface d'airflow
 
-Elasticsearch : http://localhost:9200
+- Elasticsearch : http://localhost:9200
 
-Grafana : http://localhost:3000 (admin/admin)
+- Grafana : http://localhost:3000 (admin/admin)
 
-Kibana : http://localhost:5601
+- Kibana : http://localhost:5601
+
+Projet développé par William BRUN & Hugo O'NEILL dans le cadre d'un projet au sein de l'Isep à Paris. 2025
