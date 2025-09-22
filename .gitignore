@@ -1,1 +1,8 @@
-.vscode
+*.crc
+*.pyc
+.DS_Store
+__pycache__/
+include/data/combined/
+include/data/formatted/
+include/data/raw/
+
