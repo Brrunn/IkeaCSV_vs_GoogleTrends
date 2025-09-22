@@ -72,7 +72,7 @@ Le projet utilise Astro (Astronomer) pour gérer Airflow et ses dépendances.
 
 ### Prérequis
 - [Astro CLI](https://www.astronomer.io/docs/astro/cli-installation) installé
-- Docker et Docker Compose installés
+- Docker Desktop installé 
 
 ### Démarrage en local
 
