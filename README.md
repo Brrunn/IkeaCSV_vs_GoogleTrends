@@ -89,6 +89,4 @@ astro dev start </br>
 
 - Grafana : http://localhost:3000 (admin/admin)
 
-- Kibana : http://localhost:5601
-
 Projet développé par William BRUN & Hugo O'NEILL dans le cadre d'un projet au sein de l'Isep à Paris. 2025
